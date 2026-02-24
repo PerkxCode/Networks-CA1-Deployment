@@ -1,0 +1,58 @@
+---
+- name: Configure AWS Server and Install Docker
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Install required system packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Install Docker Engine
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Ensure Docker starts automatically on boot
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Copy application files to server
+      copy:
+        src: ./app/
+        dest: /home/ubuntu/app/
+
+    - name: Build the Docker image
+      command: docker build -t b9is121-webapp /home/ubuntu/app/
+
+    - name: Stop old container (if it exists)
+      command: docker stop my_web_container
+      ignore_errors: yes
+
+    - name: Remove old container (if it exists)
+      command: docker rm my_web_container
+      ignore_errors: yes
+
+    - name: Run the new Docker container
+      command: docker run -d -p 80:80 --name my_web_container b9is121-webapp
