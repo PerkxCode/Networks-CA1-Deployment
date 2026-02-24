@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Networks CA1 Deployment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Deployment Dashboard | Perk Ramchandani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9; }
-        .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
-        h1 { color: #2c3e50; }
-        p { color: #555; font-size: 18px; }
-        .success { color: #27ae60; font-weight: bold; }
+        :root { --primary: #0061ff; --secondary: #60efff; --dark: #1a1a2e; --text: #ffffff; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+        .dashboard { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 50px; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-width: 700px; width: 90%; text-align: center; position: relative; }
+        .live-indicator { background: rgba(39, 174, 96, 0.2); color: #2ecc71; padding: 6px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 25px; border: 1px solid rgba(46, 204, 113, 0.3); }
+        .dot { height: 8px; width: 8px; background-color: #2ecc71; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+        h1 { font-size: 2.2rem; margin: 0; background: linear-gradient(to right, var(--secondary), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        .success-banner { color: #2ecc71; font-weight: 500; margin: 25px 0; font-size: 1.1rem; letter-spacing: 0.5px; }
+        h3 { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px; margin-bottom: 20px; }
+        .tech-grid { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        .tech-card { display: flex; flex-direction: column; align-items: center; gap: 10px; transition: transform 0.3s ease; }
+        .tech-card:hover { transform: translateY(-5px); }
+        .tech-card i { font-size: 2.5rem; background: linear-gradient(45deg, #fff, rgba(255,255,255,0.5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tech-card span { font-size: 0.75rem; font-weight: 600; opacity: 0.8; }
+        .footer { margin-top: 50px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; opacity: 0.7; }
+        .author { color: var(--secondary); font-weight: 600; }
+        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>CI/CD PIPELINE IS LIVE!</h1>
-        <h2>Automated Container Deployment</h2>
-        <p>If you are reading this, the deployment was a <span class="success">MASSIVE SUCCESS!</span></p>
-        <p>Infrastructure: AWS EC2 (Terraform)</p>
-        <p>Configuration: Ansible</p>
-        <p>Containerization: Docker</p>
+    <div class="dashboard">
+        <div class="live-indicator"><span class="dot"></span> WEBSITE LIVE</div>
+        
+        <h1>Module: Network Systems and Administration</h1>
+        
+        <p class="success-banner">If you are reading this, the deployment was a MASSIVE SUCCESS!</p>
+
+        <h3>Tools Used For This End-to-End Deployment</h3>
+        
+        <div class="tech-grid">
+            <div class="tech-card"><i class="fab fa-aws"></i><span>AWS EC2</span></div>
+            <div class="tech-card"><i class="fas fa-code-branch"></i><span>Terraform</span></div>
+            <div class="tech-card"><i class="fas fa-server"></i><span>Ansible</span></div>
+            <div class="tech-card"><i class="fab fa-docker"></i><span>Docker</span></div>
+            <div class="tech-card"><i class="fab fa-github"></i><span>GitHub Actions</span></div>
+        </div>
+
+        <div class="footer">
+            Author: <span class="author">Perk Ramchandani</span>
+        </div>
     </div>
 </body>
 </html>
