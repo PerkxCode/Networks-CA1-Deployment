@@ -19,10 +19,10 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "ansible/app/*"
+          source: "ansible/app/index.html,ansible/app/Dockerfile"
           target: "/home/ubuntu/app"
           strip_components: 2
-          rm: true
+          overwrite: true
 
       - name: SSH into EC2, Build, and Run Docker Container
         uses: appleboy/ssh-action@v0.1.7
